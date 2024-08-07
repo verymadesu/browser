@@ -53,7 +53,7 @@ woheller69@t-online.de
 <a href= "https://www.paypal.com/signin"><img  align="left" src="https://www.paypalobjects.com/webstatic/de_DE/i/de-pp-logo-150px.png"></a></pre>
 
 ### Main Navigation
-<img src="Instructions.png" width="300"/>
+<img src="Instructions.png" width="300"/> <img src="Instructions2.png" width="300"/>
 
 The main navigation features are depicted in the image above.
 
@@ -76,7 +76,7 @@ bookmark these settings will remain.
 In addition you can define domains where Cookies, DOM-Storage, and JavaScript are always allowed (see Settings -> Browser Settings).
 Cookies will override the global cookies setting. DOM-Storage and JavaScript will override the tab specific settings.
 If one of these exceptions is active the respective icon will also be highlighted in "Exceptions". 
-A click on the icon will add/remove an exception. Third party cookies are not supported in general.
+A click on the icon will add/remove an exception. Third party cookies are only supported if cookies are enabled AND fingerprint protection is switched off.
 
 In additions there are settings which are only available as global settings and apply to all websites:
 - Allow location access: enables websites to access your device's location

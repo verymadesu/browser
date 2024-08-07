@@ -204,12 +204,17 @@ public class NinjaWebView extends WebView implements AlbumController {
             }
 
             CookieManager manager = CookieManager.getInstance();
-           // manager.setAcceptThirdPartyCookies(this,true); //needed for Paypal
             if (cookieHosts.isWhite(url) || sp.getBoolean("sp_cookies", true)) {
                 manager.setAcceptCookie(true);
+                if (!fingerPrintProtection){  //allow third party cookies if fingerprint protection is off
+                    manager.setAcceptThirdPartyCookies(this,true);
+                } else {
+                    manager.setAcceptThirdPartyCookies(this,false);
+                }
                 manager.getCookie(url);
             } else {
                 manager.setAcceptCookie(false);
+                manager.setAcceptThirdPartyCookies(this,false);
             }
             String  domain="";
             try {
