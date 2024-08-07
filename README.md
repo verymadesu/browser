@@ -53,7 +53,7 @@ woheller69@t-online.de
 <a href= "https://www.paypal.com/signin"><img  align="left" src="https://www.paypalobjects.com/webstatic/de_DE/i/de-pp-logo-150px.png"></a></pre>
 
 ### Main Navigation
-<img src="Instructions.png" width="350"/> <img src="Instructions2.png" width="300"/>
+<img src="Instructions.png" height="460"/> <img src="Instructions2.png" height="460"/>
 
 The main navigation features are depicted in the image above.
 
