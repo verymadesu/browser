@@ -84,7 +84,7 @@ public class NinjaWebViewClient extends WebViewClient {
             view.evaluateJavascript(script.getScript(),null);
         }
 
-        view.evaluateJavascript("var links=document.getElementsByTagName('video'); for(let i=0;i<links.length;i++){links[i].pause()};", null);
+        view.evaluateJavascript("var vlinks=document.getElementsByTagName('video'); for(let i=0;i<vlinks.length;i++){vlinks[i].pause()};", null);
 
         if (sp.getBoolean("sp_deny_cookie_banners",false)){ //click opt-out if possible
             String bannerBlockScript = BannerBlock.getBannerBlockScriptPageFinished();
@@ -204,7 +204,7 @@ public class NinjaWebViewClient extends WebViewClient {
                     "      },\n" +
                     "      \"number\": function (power) {\n" +
                     "        var tmp = [];\n" +
-                    "        for (var i = 0; i < power.length; i++) {\n" +
+                    "        for (let i = 0; i < power.length; i++) {\n" +
                     "          tmp.push(Math.pow(2, power[i]));\n" +
                     "        }\n" +
                     "        /*  */\n" +
@@ -212,7 +212,7 @@ public class NinjaWebViewClient extends WebViewClient {
                     "      },\n" +
                     "      \"int\": function (power) {\n" +
                     "        var tmp = [];\n" +
-                    "        for (var i = 0; i < power.length; i++) {\n" +
+                    "        for (let i = 0; i < power.length; i++) {\n" +
                     "          var n = Math.pow(2, power[i]);\n" +
                     "          tmp.push(new Int32Array([n, n]));\n" +
                     "        }\n" +
@@ -221,7 +221,7 @@ public class NinjaWebViewClient extends WebViewClient {
                     "      },\n" +
                     "      \"float\": function (power) {\n" +
                     "        var tmp = [];\n" +
-                    "        for (var i = 0; i < power.length; i++) {\n" +
+                    "        for (let i = 0; i < power.length; i++) {\n" +
                     "          var n = Math.pow(2, power[i]);\n" +
                     "          tmp.push(new Float32Array([1, n]));\n" +
                     "        }\n" +
@@ -310,7 +310,7 @@ public class NinjaWebViewClient extends WebViewClient {
                     "          const results_1 = getChannelData.apply(this, arguments);\n" +
                     "          if (acontext.BUFFER !== results_1) {\n" +
                     "            acontext.BUFFER = results_1;\n" +
-                    "            for (var i = 0; i < results_1.length; i += 100) {\n" +
+                    "            for (let i = 0; i < results_1.length; i += 100) {\n" +
                     "              let index = Math.floor(Math.random() * i);\n" +
                     "              results_1[index] = results_1[index] + Math.random() * 0.0000001;\n" +
                     "            }\n" +
@@ -329,7 +329,7 @@ public class NinjaWebViewClient extends WebViewClient {
                     "          Object.defineProperty(results_2.__proto__, \"getFloatFrequencyData\", {\n" +
                     "            \"value\": function () {\n" +
                     "              const results_3 = getFloatFrequencyData.apply(this, arguments);\n" +
-                    "              for (var i = 0; i < arguments[0].length; i += 100) {\n" +
+                    "              for (let i = 0; i < arguments[0].length; i += 100) {\n" +
                     "                let index = Math.floor(Math.random() * i);\n" +
                     "                arguments[0][index] = arguments[0][index] + Math.random() * 0.1;\n" +
                     "              }\n" +
@@ -428,7 +428,7 @@ public class NinjaWebViewClient extends WebViewClient {
     public void onLoadResource(WebView view, String url) {
 
         if(ninjaWebView.isFingerPrintProtection()) {
-            view.evaluateJavascript("var test=document.querySelector(\"a[ping]\"); if(test!==null){test.removeAttribute('ping')};", null);
+            view.evaluateJavascript("var pingtest=document.querySelector(\"a[ping]\"); if(pingtest!==null){pingtest.removeAttribute('ping')};", null);
             //do not allow ping on http only pages (tested with http://tests.caniuse.com)
         }
 

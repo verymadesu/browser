@@ -147,12 +147,17 @@ public class HelperUnit {
                     NinjaToast.show(activity, activity.getString(R.string.toast_input_empty));
                 } else {
                     if (BackupUnit.checkPermissionStorage(activity)) {
-                        Uri source = Uri.parse(url);
+                        String download_url;
+                        // remove view-source: if available
+                        if (url.startsWith(BrowserUnit.URL_SCHEME_VIEW_SOURCE)) download_url = url.substring(BrowserUnit.URL_SCHEME_VIEW_SOURCE.length());
+                        else download_url = url;
+
+                        Uri source = Uri.parse(download_url);
                         DownloadManager.Request request = new DownloadManager.Request(source);
-                        request.addRequestHeader("Cookie", CookieManager.getInstance().getCookie(url));
+                        request.addRequestHeader("Cookie", CookieManager.getInstance().getCookie(download_url));
                         request.addRequestHeader("Accept", "text/html, application/xhtml+xml, *" + "/" + "*");
                         request.addRequestHeader("Accept-Language", "en-US,en;q=0.7,he;q=0.3");
-                        request.addRequestHeader("Referer", url);
+                        request.addRequestHeader("Referer", download_url);
                         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED); //Notify client once download is completed!
                         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, filename1);
                         DownloadManager dm = (DownloadManager) activity.getSystemService(DOWNLOAD_SERVICE);

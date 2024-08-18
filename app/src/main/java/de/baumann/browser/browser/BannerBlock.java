@@ -154,7 +154,7 @@ public class BannerBlock {
                     "        function isSubdomain(subdomain, domain) {\n" +
                     "            return subdomain.endsWith(\".\" + domain) || subdomain === domain;\n" +
                     "        }\n" +
-                    "        for (var i = 0; i < bbs_config.length; i++) {\n" +
+                    "        for (let i = 0; i < bbs_config.length; i++) {\n" +
                     "            var item = bbs_config[i];\n" +
                     "            // Check if the current domain is in the list of specified domains or a subdomain \n" +
                     "            if (item.domains.some(domain => isSubdomain(currentDomain, domain))) {\n" +
@@ -190,7 +190,7 @@ public class BannerBlock {
                     "        function createOptOutHandler(item) {\n" +
                     "           return function() {\n" +
                     "               var optOutElements = document.querySelectorAll(item.click.optOut);\n" +
-                    "               for (var j = 0; j < optOutElements.length; j++) {\n" +
+                    "               for (let j = 0; j < optOutElements.length; j++) {\n" +
                     "                   optOutElements[j].click();\n" +
                     "               }\n" +
                     "           };\n" +
@@ -198,7 +198,7 @@ public class BannerBlock {
                     "        function createOptOutHandlerException(item) {\n" +
                     "           return function() {\n" +
                     "               var optOutElements = document.querySelectorAll(item.click.optOut);\n" +
-                    "               for (var j = 0; j < optOutElements.length; j++) {\n" +
+                    "               for (let j = 0; j < optOutElements.length; j++) {\n" +
                     "                   var rect = optOutElements[j].getBoundingClientRect();\n" +
                     "                   // Check if the button has an area > 0 \n" +
                     "                   if (rect.width * rect.height > 0 ){\n"+
@@ -208,7 +208,7 @@ public class BannerBlock {
                     "           };\n" +
                     "        }\n" +
                     "        //MAIN LOOP\n" +
-                    "        for (var i = 0; i < bbf_config.length; i++) {\n" +
+                    "        for (let i = 0; i < bbf_config.length; i++) {\n" +
                     "            var item = bbf_config[i];\n" +
                     "            // Check if the current domain is in the list of specified domains or a subdomain \n" +
                     "            if (item.domains.length === 0 || item.domains.some(domain => isSubdomain(currentDomain, domain))) {\n" +
