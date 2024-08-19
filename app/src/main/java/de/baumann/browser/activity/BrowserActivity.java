@@ -354,11 +354,12 @@ public class BrowserActivity extends AppCompatActivity implements BrowserControl
         if (sp.getBoolean("sp_location", false) && !HelperUnit.checkPermissionsLoc(this))  sp.edit().putBoolean("sp_location",false).apply();
 
         if (sp.getInt("restart_changed", 1) == 1) {
-            sp.edit().putInt("restart_changed", 0).apply();
             MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
             builder.setMessage(R.string.toast_restart);
             builder.setPositiveButton(R.string.app_ok, (dialog, whichButton) -> finish());
-            builder.setNegativeButton(R.string.app_cancel, (dialog, whichButton) -> dialog.cancel());
+            builder.setNegativeButton(R.string.app_cancel, (dialog, whichButton) -> {
+                sp.edit().putInt("restart_changed", 0).apply();
+                dialog.cancel();});
             AlertDialog dialog = builder.create();
             dialog.show();
             Objects.requireNonNull(dialog.getWindow()).setGravity(Gravity.BOTTOM);
@@ -392,9 +393,10 @@ public class BrowserActivity extends AppCompatActivity implements BrowserControl
                 WebStorage.getInstance().deleteAllData();
             }
         }
+        if (sp.getInt("restart_changed", 1) == 0) {  //restart_changed !=0 in case of a restart after settings change
+            sp.edit().putString("openTabs", "").apply();   //clear open tabs in preferences
+        }
         BrowserContainer.clear();
-
-        sp.edit().putString("openTabs", "").apply();   //clear open tabs in preferences
 
         unregisterReceiver(downloadReceiver);
         ninjaWebView.getViewTreeObserver().removeOnGlobalLayoutListener(keyboardLayoutListener);
