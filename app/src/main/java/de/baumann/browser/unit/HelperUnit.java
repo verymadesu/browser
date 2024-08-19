@@ -209,6 +209,7 @@ public class HelperUnit {
 
     public static String guessFileName(String url, String contentDisposition, String mimeType) {
         //Alternative to URLUtil.guessFileName, using FilnameExtractor from DuckDuckGo
+        //Also alternative to newer URLUtilCompat.guessFileName from WebKit 1.11
 
         File directory =  new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),"/");
 

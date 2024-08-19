@@ -1,5 +1,6 @@
 package de.baumann.browser.view;
 
+import static androidx.webkit.WebViewMediaIntegrityApiStatusConfig.WEBVIEW_MEDIA_INTEGRITY_API_DISABLED;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 import androidx.webkit.WebSettingsCompat;
 import androidx.webkit.WebViewFeature;
+import androidx.webkit.WebViewMediaIntegrityApiStatusConfig;
 
 import android.util.AttributeSet;
 import android.view.*;
@@ -157,6 +159,10 @@ public class NinjaWebView extends WebView implements AlbumController {
 
         if(WebViewFeature.isFeatureSupported(WebViewFeature.ALGORITHMIC_DARKENING)) {
             WebSettingsCompat.setAlgorithmicDarkeningAllowed(webSettings, sp.getBoolean("sp_algo_dark",true));
+        }
+
+        if(WebViewFeature.isFeatureSupported(WebViewFeature.WEBVIEW_MEDIA_INTEGRITY_API_STATUS)) {
+            WebSettingsCompat.setWebViewMediaIntegrityApiStatus(webSettings, new WebViewMediaIntegrityApiStatusConfig(new WebViewMediaIntegrityApiStatusConfig.Builder(WEBVIEW_MEDIA_INTEGRITY_API_DISABLED)));
         }
 
         addJavascriptInterface(new JavaScriptInterface(context, this), "NinjaWebViewJS");
