@@ -81,13 +81,9 @@ public class Fragment_settings_Start extends PreferenceFragmentCompat implements
             AdBlock.downloadHosts(getActivity());
         } else if (key.equals("sp_deny_cookie_banners")) {
             if (sp.getBoolean("sp_deny_cookie_banners",false)) BannerBlock.downloadBanners(getActivity());
-        } else if (key.equals("sp_userAgent") ||
-                key.equals("sp_search_engine_custom") ||
-                key.equals("searchEngineSwitch") ||
-                key.equals("userAgentSwitch") ||
-                key.equals("sp_search_engine")) {
-            sp.edit().putInt("restart_changed", 1).apply();
-            updatePrefSummary(findPreference(key));
+//        } else if (key.equals("sp_userAgent") ||
+//                key.equals("userAgentSwitch")) {  // not needed ??
+//            sp.edit().putInt("restart_changed", 1).apply();  // maybe needed for future preferences
         }
         updatePrefSummary(findPreference(key));
     }

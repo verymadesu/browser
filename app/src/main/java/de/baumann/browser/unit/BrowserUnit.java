@@ -55,6 +55,7 @@ public class BrowserUnit {
 
     private static final String SEARCH_ENGINE_STARTPAGE_DE = "https://startpage.com/do/search?lui=deu&language=deutsch&query=";
     private static final String SEARCH_ENGINE_SEARX = "https://searx.be/?q=";
+    private static final String SEARCH_ENGINE_BRAVE = "https://search.brave.com/search?q=";
 
     public static final String URL_ENCODING = "UTF-8";
     public static final String URL_ABOUT_BLANK = "about:blank";
@@ -116,18 +117,8 @@ public class BrowserUnit {
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         String customSearchEngine = sp.getString("sp_search_engine_custom", "");
-        assert customSearchEngine != null;
 
-        //Override UserAgent if own UserAgent is defined
-        if (!sp.contains("searchEngineSwitch")){  //if new switch_text_preference has never been used initialize the switch
-            if (customSearchEngine.equals("")) {
-                sp.edit().putBoolean("searchEngineSwitch", false).apply();
-            }else{
-                sp.edit().putBoolean("searchEngineSwitch", true).apply();
-            }
-        }
-
-        if (sp.getBoolean("searchEngineSwitch",false)){  //if new switch_text_preference has never been used initialize the switch
+        if (sp.getBoolean("searchEngineSwitch",false)){
             return customSearchEngine + query;
         } else {
             final int i = Integer.parseInt(Objects.requireNonNull(sp.getString("sp_search_engine", "4")));
@@ -150,6 +141,8 @@ public class BrowserUnit {
                     return SEARCH_ENGINE_ECOSIA + query;
                 case 9:
                     return SEARCH_ENGINE_Metager + query;
+                case 10:
+                    return SEARCH_ENGINE_BRAVE + query;
                 default:
                     return SEARCH_ENGINE_STARTPAGE + query;
             }

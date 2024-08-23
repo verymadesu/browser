@@ -23,6 +23,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.webkit.HttpAuthHandler;
 import android.webkit.MimeTypeMap;
+import android.webkit.RenderProcessGoneDetail;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
@@ -65,6 +66,14 @@ public class NinjaWebViewClient extends WebViewClient {
         this.adBlock = new AdBlock(this.context);
         this.white = false;
         this.enable = true;
+    }
+
+    @Override
+    public boolean onRenderProcessGone (WebView view, RenderProcessGoneDetail detail){
+        String text = context.getString(R.string.app_error) + ": " + detail.toString();
+        NinjaToast.show(context, text);
+        view.reload();
+        return true;
     }
 
     @Override

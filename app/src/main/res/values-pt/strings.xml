@@ -233,5 +233,6 @@
     <string name="summary_deny_cookie_banners">Tentar recusar os avisos de cookies através das regras Mozilla\'s Cookie Banner</string>
     <string name="setting_title_deny_cookie_banners">Bloqueador de avisos de cookies</string>
     <string name="setting_title_custom_host_list">Domínios adicionais</string>
+    <string name="setting_summary_search_engine_brave">Brave</string>
     <!-- License changelog -->
 </resources>
