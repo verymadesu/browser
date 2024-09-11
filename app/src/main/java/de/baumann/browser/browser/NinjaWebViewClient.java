@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.webkit.HttpAuthHandler;
@@ -39,6 +40,7 @@ import java.util.List;
 import java.util.Objects;
 
 import de.baumann.browser.R;
+import de.baumann.browser.activity.BrowserActivity;
 import de.baumann.browser.database.UserScript;
 import de.baumann.browser.unit.BrowserUnit;
 import de.baumann.browser.unit.ScriptUnit;
@@ -70,8 +72,9 @@ public class NinjaWebViewClient extends WebViewClient {
 
     @Override
     public boolean onRenderProcessGone (WebView view, RenderProcessGoneDetail detail){
-        String text = context.getString(R.string.app_error) + ": " + detail.toString();
-        NinjaToast.show(context, text);
+        String text = context.getString(R.string.app_error) + ": onRenderProcessGone: " + detail.toString();
+        Log.d(context.getString(R.string.app_name),"onRenderProcessGone:"+text);
+        if (BrowserActivity.isVisible) NinjaToast.show(context, text);
         view.reload();
         return true;
     }

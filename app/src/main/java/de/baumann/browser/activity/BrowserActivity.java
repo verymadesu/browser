@@ -125,6 +125,7 @@ import static de.baumann.browser.unit.BrowserUnit.URL_ABOUT_BLANK;
 
 public class BrowserActivity extends AppCompatActivity implements BrowserController {
 
+    public static boolean isVisible = false;
     // Menus
 
     private RecordAdapter adapter;
@@ -228,6 +229,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserControl
         sp = PreferenceManager.getDefaultSharedPreferences(context);
         sp.edit().putString("openTabs", TextUtils.join("‚‗‚", openTabs)).apply();
         sp.edit().putString("openTabSettings", TextUtils.join("‚‗‚", openTabSettings)).apply();
+        isVisible = false;
         super.onPause();
     }
 
@@ -343,6 +345,7 @@ public class BrowserActivity extends AppCompatActivity implements BrowserControl
     @Override
     public void onResume() {
         super.onResume();
+        isVisible = true;
         HelperUnit.initTheme(this);
         initTabDialog();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
